@@ -1,9 +1,71 @@
 {% extends "index.html" %}
 
 {% block addtodo %}
-<h1>Add Todo</h1>
+<h1 class="text-center m-2">Add Todo</h1>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 col bg-warning rounded p-2 m-1">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group p-1 container">
+                    <div class="row p-2">
+                        <label for="task" class="col fs-5 text-start">Task</label>
+                        <input type="text" id="task" name="task" class="bg-light rounded col">
+                    </div>
+                </div>
+                <div class="form-group p-1 container">
+                    <div class="row p-2">
+                        <label for="description" class="col fs-5 text-start">Description</label>
+                        <input type="text" id="description" name="description" class="bg-light rounded col">
+                    </div>
+                </div>
+                <div class="form-group p-1">
+                    <div class="row p-2">
+                        <Label for="priority" class="col fs-5 text-start">Priority</Label>
+                        <select name="priority" id="priority" class="bg-light rounded col">
+                            <option value="H">High</option>
+                            <option value="M">Medium</option>
+                            <option value="L">Low</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
 {% endblock addtodo %}
 
 {% block displaytodo %}
-<h1>Your Todo List</h1>
+<h1 class="text-center m-2">Your Todo List</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 col bg-warning rounded p-2 m-1">
+            <table class="table table-success table-hover table-bordered">
+                <tr>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th>Priority</th>
+                    <th>Actions</th>
+                </tr>
+                {% for todo in todos %}
+                <tr>
+                    <td>{{ todo.Task }}</td>
+                    <td>{{ todo.Description }}</td>
+                    <td>{{ todo.Priority }}</td>
+                    <td>{{ todo.Status }}</td>
+                    {% comment %} <td>
+                        <a href="{% url 'edit_todo' todo.id %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'complete_todo' todo.id %}" class="btn btn-success btn-sm">Completed</a>
+                        <a href="{% url 'delete_todo' todo.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td> {% endcomment %}
+                </tr>{% endfor %}
+            </table>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
 {% endblock displaytodo %}
