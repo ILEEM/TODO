@@ -17,7 +17,7 @@
                 <div class="form-group p-1 container">
                     <div class="row p-2">
                         <label for="description" class="col fs-5 text-start">Description</label>
-                        <input type="text" id="description" name="description" class="bg-light rounded col">
+                        <textarea class="form-control bg-light rounded col" id="description" name="description" rows="4" required></textarea>
                     </div>
                 </div>
                 <div class="form-group p-1">
@@ -43,7 +43,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-10 col bg-warning rounded p-2 m-1">
+        <div class="col-sm-10 col bg-warning rounded pt-3 m-1">
             <table class="table table-success table-hover table-bordered">
                 <tr>
                     <th>Task</th>
@@ -56,12 +56,37 @@
                     <td>{{ todo.Task }}</td>
                     <td>{{ todo.Description }}</td>
                     <td>{{ todo.Priority }}</td>
-                    <td>{{ todo.Status }}</td>
-                    {% comment %} <td>
-                        <a href="{% url 'edit_todo' todo.id %}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="{% url 'complete_todo' todo.id %}" class="btn btn-success btn-sm">Completed</a>
-                        <a href="{% url 'delete_todo' todo.id %}" class="btn btn-danger btn-sm">Delete</a>
-                    </td> {% endcomment %}
+                    <td>  
+                        <a href="{% url 'complete_todo' todo.id %}" class="btn btn-success btn-sm m-1">Completed</a>
+                        <a href="{% url 'delete_todo' todo.id %}" class="btn btn-success btn-sm m-1">Delete</a>
+                        <a href="{% url 'edit_todo' todo.id %}" class="btn btn-success btn-sm m-1">Edit</a>
+                    </td>
+                </tr>{% endfor %}
+            </table>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
+<h1 class="text-center m-2">Your Completed Task List</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 col bg-warning rounded pt-3 m-1">
+            <table class="table table-success table-hover table-bordered">
+                <tr>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th>Priority</th>
+                    <th>Actions</th>
+                </tr>
+                {% for todo in completed %}
+                <tr>
+                    <td>{{ todo.Task }}</td>
+                    <td>{{ todo.Description }}</td>
+                    <td>{{ todo.Priority }}</td>
+                    <td>  
+                        <a href="{% url 'delete_todo' todo.id %}" class="btn btn-success btn-sm">Delete</a>
+                    </td>
                 </tr>{% endfor %}
             </table>
         </div>
