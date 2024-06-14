@@ -44,25 +44,27 @@
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10 col bg-warning rounded pt-3 m-1">
-            <table class="table table-success table-hover table-bordered">
-                <tr>
-                    <th>Task</th>
-                    <th>Description</th>
-                    <th>Priority</th>
-                    <th>Actions</th>
-                </tr>
-                {% for todo in todos %}
-                <tr>
-                    <td>{{ todo.Task }}</td>
-                    <td>{{ todo.Description }}</td>
-                    <td>{{ todo.Priority }}</td>
-                    <td>  
-                        <a href="{% url 'complete_todo' todo.id %}" class="btn btn-success btn-sm m-1">Completed</a>
-                        <a href="{% url 'delete_todo' todo.id %}" class="btn btn-success btn-sm m-1">Delete</a>
-                        <a href="{% url 'edit_todo' todo.id %}" class="btn btn-success btn-sm m-1">Edit</a>
-                    </td>
-                </tr>{% endfor %}
-            </table>
+            <div class="table-responsive">
+                <table class="table table-success table-hover table-bordered">
+                    <tr>
+                        <th>Task</th>
+                        <th>Description</th>
+                        <th>Priority</th>
+                        <th>Actions</th>
+                    </tr>
+                    {% for todo in todos %}
+                    <tr>
+                        <td>{{ todo.Task }}</td>
+                        <td>{{ todo.Description }}</td>
+                        <td>{{ todo.Priority }}</td>
+                        <td>  
+                            <a href="{% url 'complete_todo' todo.id %}" class="btn btn-success btn-sm m-1">Completed</a>
+                            <a href="{% url 'delete_todo' todo.id %}" class="btn btn-success btn-sm m-1">Delete</a>
+                            <a href="{% url 'edit_todo' todo.id %}" class="btn btn-success btn-sm m-1">Edit</a>
+                        </td>
+                    </tr>{% endfor %}
+                </table>
+            </div>
         </div>
         <div class="col-sm-1"></div>
     </div>
